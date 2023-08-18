@@ -1,9 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../POMs/loginPage';
 import { HomePage } from '../POMs/homePage';
-import { SetttingsPage } from '../POMs/settingsPage';
-import { LoginEnvironments } from '../environments/loginEnvironments';
 import { SettingsPage } from '../POMs/settingsPage';
+import { LoginEnvironments } from '../environments/loginEnvironments';
 
 test('Logout from Settings', async({ page }) => {
     const loginPage = new LoginPage(page);
@@ -16,8 +15,7 @@ test('Logout from Settings', async({ page }) => {
     await homePage.settingsLink.click();
 
     const settingsPage = new SettingsPage(page);
-    await settingsPage.logoutButton.click();
-    await settingsPage.confirmButton.click();
+    await settingsPage.logout()
     await page.waitForURL('https://cobe-accounting.herokuapp.com/');
 
 });

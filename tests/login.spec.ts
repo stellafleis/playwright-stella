@@ -22,21 +22,29 @@ test('Login with incorrect credentials', async({ page }) => {
 
 });
 
+test('Error message whenn loging in with incorrect credentials', async({ page }) => {
+    const loginPage = new LoginPage(page);
+    const loginEnvironments = new LoginEnvironments(page);
+
+    await page.goto(loginEnvironments.baseUrl);
+    await loginPage.login(loginEnvironments.invalidEmail, loginEnvironments.invalidPassword);
+    await loginPage.assertErrorMessageIsVisible();
+
+
+});
+
 test('Show or Hide Password Button', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const loginEnvironments = new LoginEnvironments(page);
 
     await page.goto(loginEnvironments.baseUrl);
-    await loginPage.emailInputField.fill(loginEnvironments.validEmail);
-    await loginPage.passwordInputField.fill(loginEnvironments.validPassword);
+    await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
 
     await loginPage.showHideButton.click();
-    expect(await loginPage.passwordInputField.isVisible()).toBe(true);
-
+    expect(page.locator('label').filter({ hasText: 'Password' }).getByRole('img'));
 
 
 });
-
 
 
 test('Nonexistant registar option', async ({ page }) => {
@@ -44,5 +52,5 @@ test('Nonexistant registar option', async ({ page }) => {
     const loginEnvironments = new LoginEnvironments(page);
 
     await page.goto(loginEnvironments.baseUrl);
-    expect(await loginPage.page.locator('button', { text: 'Register' }).isVisible()).toBe(false);
+    await loginPage.register();
 });

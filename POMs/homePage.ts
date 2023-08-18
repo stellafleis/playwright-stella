@@ -15,7 +15,7 @@ export class HomePage {
         this.clientsLink = page.getByRole('link', { name: 'Clients' });
         this.offersLink = page.getByRole('link', { name: 'Offers' });
         this.invoicesLink = page.getByRole('link', { name: 'Invoices' });
-        this.settingsLink = page.getByRole('link', { name: 'Settings' })
+        this.settingsLink = page.getByRole('link', { name: 'Settings' });
     }
 
     async goToSettingsPage() {

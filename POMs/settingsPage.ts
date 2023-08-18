@@ -15,9 +15,9 @@ export class SettingsPage {
         this.homeLink = page.getByRole('link', { name: 'Home' });
         this.clientsLink = page.getByRole('link', { name: 'Clients' });
         this.offersLink = page.getByRole('link', { name: 'Offers' });
-        this.invoicesLink = page.getByRole('link', { name: 'Invoices' });
+        this.invoicesLink = page.getByRole('link', { name: 'Invoices'});
         this.logoutButton = page.getByText('Log out');
-        this.confirmButton = page.getByRole('button', { name: 'Confirm' })
+        this.confirmButton = page.getByRole('button', { name: 'Confirm'})
     }
 
     async logout() {
