@@ -9,7 +9,7 @@ export class LoginPage {
     readonly emailErrorMessage: Locator;
     readonly passwordErrorMessage: Locator;
     readonly registerButtonn: Locator;
-    readonly 
+    readonly
 
     constructor(page: Page) {
         this.page = page;
@@ -26,25 +26,34 @@ export class LoginPage {
         await this.emailInputField.fill(emailValue);
         await this.passwordInputField.fill(passwordValue);
         await this.loginButton.click();
+    
+
     }
 
-    async visibility(emailValue: string, passwordValue: string){
+    async assertHomePageLink(){
+        await expect(this.page).toHaveURL('https://cobe-accounting.herokuapp.com/home/Offers?page=1');
+
+    }
+
+    
+
+    async visibility(emailValue: string, passwordValue: string) {
         await this.emailInputField.fill(emailValue);
         await this.passwordInputField.fill(passwordValue);
         await this.showHideButton.click();
-        
-        
-}
-
-async assertErrorMessageIsVisible() {
-    await expect(this.emailErrorMessage).toBeVisible();
-    await expect(this.passwordErrorMessage).toBeVisible();
-}
 
 
-async register(){
-await expect(this.registerButtonn).toBeHidden();
+    }
 
-}
+    async assertErrorMessageIsVisible() {
+        await expect(this.emailErrorMessage).toBeVisible();
+        await expect(this.passwordErrorMessage).toBeVisible();
+    }
+
+
+    async register() {
+        await expect(this.registerButtonn).toBeHidden();
+
+    }
 
 }

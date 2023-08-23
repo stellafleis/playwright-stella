@@ -4,7 +4,7 @@ import { HomePage } from '../POMs/homePage';
 import { SettingsPage } from '../POMs/settingsPage';
 import { LoginEnvironments } from '../environments/loginEnvironments';
 
-test('Logout from Settings', async({ page }) => {
+test('Logout from Settings', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const loginEnvironments = new LoginEnvironments(page);
 
@@ -15,7 +15,6 @@ test('Logout from Settings', async({ page }) => {
     await homePage.settingsLink.click();
 
     const settingsPage = new SettingsPage(page);
-    await settingsPage.logout()
-    await page.waitForURL('https://cobe-accounting.herokuapp.com/');
-
+    await settingsPage.logout();
+    await settingsPage.assertLoginPageLink();
 });

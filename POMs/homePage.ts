@@ -7,7 +7,7 @@ export class HomePage {
     readonly offersLink: Locator;
     readonly invoicesLink: Locator;
     readonly settingsLink: Locator;
-    readonly 
+    readonly
 
     constructor(page: Page) {
         this.page = page;
