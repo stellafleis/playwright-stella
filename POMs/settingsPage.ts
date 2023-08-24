@@ -29,8 +29,4 @@ export class SettingsPage {
         await expect(this.page).toHaveURL('https://cobe-accounting.herokuapp.com/');
     }
 
-    async assertSuccessfulCancellation(){
-        
-    }
-
 }

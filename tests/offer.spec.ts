@@ -13,13 +13,14 @@ test('Select client with zero projects', async ({ page }) => {
 
     await page.goto(loginEnvironments.baseUrl);
     await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
-    await loginPage.assertHomePageLink();
+    await loginPage.assertHomeSectionIsDisplayed();
 
     const offerModalPage = new OfferModalPage(page);
     const newOfferEvironments = new NewOfferEnvironments(page);
 
     await offerModalPage.selectClient(newOfferEvironments.clientZeroProject);
-    await offerModalPage.assertClientZeroProjectsError();
+    await offerModalPage.assertClientWithoutProjectErrorMessage();
+    await offerModalPage.assertProjectDropdownIsHidden();
 
     await offerModalPage.selectLanguage(newOfferEvironments.englishLanguage);
     await offerModalPage.assertDisabledContinueButton();
@@ -33,7 +34,7 @@ test('Select client with one projects', async ({ page }) => {
 
     await page.goto(loginEnvironments.baseUrl);
     await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
-    await loginPage.assertHomePageLink();
+    await loginPage.assertHomeSectionIsDisplayed();
 
     const offerModalPage = new OfferModalPage(page);
     const newOfferEvironments = new NewOfferEnvironments(page);
@@ -52,7 +53,7 @@ test('Select client with two projects', async ({ page }) => {
 
     await page.goto(loginEnvironments.baseUrl);
     await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
-    await loginPage.assertHomePageLink();
+    await loginPage.assertHomeSectionIsDisplayed();
 
     const offerModalPage = new OfferModalPage(page);
     const newOfferEvironments = new NewOfferEnvironments(page);
@@ -64,13 +65,13 @@ test('Select client with two projects', async ({ page }) => {
     await offerModalPage.assertSuccessfulNewOffer();
 });
 
-test('Cancel crating new offer', async ({ page }) => {
+test('Cancel creating new offer', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const loginEnvironments = new LoginEnvironments(page);
 
     await page.goto(loginEnvironments.baseUrl);
     await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
-    await loginPage.assertHomePageLink();
+    await loginPage.assertHomeSectionIsDisplayed();
 
     const offerModalPage = new OfferModalPage(page);
     const newOfferEvironments = new NewOfferEnvironments(page);

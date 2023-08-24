@@ -10,8 +10,8 @@ export class OfferModalPage {
     readonly languageDropdown: Locator;
     readonly cancelButton: Locator;
     readonly continueButton: Locator;
-    readonly clientZeroProjectsError: Locator;
-    readonly pageBar: Locator;
+    readonly clientWithoutProjectError: Locator;
+    readonly disableProjectBar: Locator;
     readonly cobeLogo: Locator;
 
 
@@ -26,8 +26,8 @@ export class OfferModalPage {
         this.languageDropdown = page.locator('#react-select-3-placeholder');
         this.cancelButton = page.getByRole('button', { name: 'Cancel' });
         this.continueButton = page.getByRole('button', { name: 'Continue' });
-        this.clientZeroProjectsError = page.locator('div').filter({ hasText: /^Selected client is without a project, please create a project first\.$/ }).first();
-        this.pageBar = page.getByText('ProjectProject');
+        this.clientWithoutProjectError = page.locator('div').filter({ hasText: /^Selected client is without a project, please create a project first\.$/ }).first();
+        this.disableProjectBar = page.getByText('ProjectProject');
         this.cobeLogo = page.locator('svg').first();
 
 
@@ -40,8 +40,8 @@ export class OfferModalPage {
         await this.page.getByText(client, { exact: true }).click();
     }
 
-    async assertClientZeroProjectsError() {
-        await expect(this.clientZeroProjectsError).toBeVisible();
+    async assertClientWithoutProjectErrorMessage() {
+        await expect(this.clientWithoutProjectError).toBeVisible();
     }
 
     async selectProject(project: string) {
@@ -68,6 +68,12 @@ export class OfferModalPage {
         expect(this.page.getByText(project, { exact: true }));
 
     }
+
+
+    async assertProjectDropdownIsHidden() {
+        await this.projectDropdown.isHidden();
+    }
+
 
     async clickContinueButton() {
         await this.continueButton.click();
